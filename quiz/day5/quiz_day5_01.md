@@ -3,6 +3,7 @@
 -------
 
 #### 1. "elec_load.csv" 파일을 data.table 패키지의 fread() 함수로 읽어와서 df 객체에 저장하시오.
+(단, data.table 인자의 값을 FALSE로 한다.)
 
 #### 2. df 객체의 최초 6개 row를 출력하여 확인하시오.
 
