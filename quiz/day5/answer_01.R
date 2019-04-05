@@ -42,12 +42,35 @@ library("reshape2")
 
 # 11. melt() 함수를 사용하여 df객체의 DATE 변수를 기준으로 df객체의 구조를 변형하고 그 결과를 df_melt 객체에 저장하시오.
 # (df_melt의 row, column 개수는 85104, 3 이다)
-# 
+df_melt = melt(data = df, id.vars = "DATE")
+head(df_melt)
+dim(df_melt)
+
 # 12. df_melt 객체의 두 번째 변수를 "hour", 세 번째 변수를 "load"로 변경하시오.
+colnames(df_melt)[c(2, 3)] = c("hour", "load")
+
 # 13. hour 변수의 영문자를 모두 제거하시오.
+df_melt[, "hour"] = gsub(pattern = "[A-z]", replacement = "", 
+                         df_melt$hour)
+head(df_melt)
+unique(df_melt$hour)
+
 # 14. hour 변수의 속성을 확인하시오.
+class(df_melt$hour)
+
 # 15. hour 변수의 속성을 숫자로 변경하시오.
+df_melt[, "hour"] = as.numeric(df_melt$hour)
+
 # 16. df_melt 객체의 "DATE" 변수를 기준으로 "wday" 라는 이름의 요일 변수를 생성하시오.
+df_melt[, "wday"] = lubridate::wday(df_melt$DATE, week_start = 1)
+head(df_melt)
+
 # 17. df_melt 객체의 "wday" 변수를 활용하여 주말 데이터만 추출하고 그 결과를 df_melt_wend 객체에 저장하시오.
+df_melt_wend = df_melt[df_melt$wday >= 6,]
+
 # 18. df_melt_wend 객체를 "elec_load_wend.csv"로 저장하시오.
 # (단, 함수는 fwrite()를 사용할 것)
+fwrite(df_melt_wend, "elec_load_wend.csv")
+
+
+
