@@ -1,7 +1,6 @@
 ## 다음 문제를 풀이하시오.
 
-
-hotel_booking_train_1m.csv 파일을 df객체로 
+hotel_booking_train_1m.csv 파일을 data.table 패키지의 fread() 함수로 불러와 df 객체에 저장하시오.
 
 -------
 
